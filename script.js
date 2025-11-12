@@ -1,18 +1,21 @@
 function threeSum(arr, target) {
-  let maxi = Infinity;
-	let result = [];
-	for(let i=0;i<=arr.length-3;i++){
-		for(let j=i+1;j<=arr.length-2;j++){
-			let sum = arr[i]+arr[j];
-			for(let k=j+1;k<=arr.length-1;k++){
-				sum+=arr[k];
-				if(Math.abs(sum-target)<maxi){
-					result = [arr[i],arr[j],arr[k]];
-				}
-			}
-		}
-	}
-	return result;
+  let closestSum = Infinity;
+  let minDiff = Infinity;
+
+  for (let i = 0; i < arr.length - 2; i++) {
+    for (let j = i + 1; j < arr.length - 1; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        let sum = arr[i] + arr[j] + arr[k];
+        let diff = Math.abs(sum - target);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestSum = sum;
+        }
+      }
+    }
+  }
+
+  return closestSum;
 }
 
 module.exports = threeSum;
